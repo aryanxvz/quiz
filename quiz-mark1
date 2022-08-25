@@ -1,0 +1,60 @@
+var readlineSync = require("readline-sync");
+var score = 0;
+
+
+// welcome
+function welcome() {
+  var userName = readlineSync.question("What is your name? ");
+  console.log("Welcome " + userName + " to HOW WELL DO YOU KNOW ARYAN QUIZ");
+  console.log("------------------------------------------")
+}
+welcome();
+
+
+// quiz
+var questions = [{
+  question: "Q.1  How old am I? ",
+  answer: "18"
+}, {
+  question: "Q.2  Where do I live? (City) ",
+  answer: "Pune"
+}, {
+  question: "Q.3  Who is my Favourite Superhero? ",
+  answer: "Batman"
+}, {
+  question: "Q.4  Which is my Favourite Anime of the Big 3? ",
+  answer: "One Piece"
+}, {
+  question: "Q.5  What is my Birthdate? (date,month) ",
+  answer: "7 September"
+}]
+
+function quiz(question, answer) {
+  var userAnswer = readlineSync.question(question);
+
+  if (userAnswer.toUpperCase() === answer.toUpperCase()) {
+    console.log("You are Right!");
+    score = score + 2;
+  } else {
+    console.log("You are Wrong!");
+    score = score - 1;
+    console.log("The correct Answer is ", answer)
+  }
+  console.log("Your Current Score : ", score);
+  console.log("-------------------------------------------")
+}
+
+function game() {
+  for (var i = 0; i < questions.length; i++) {
+    var currentQuestion = questions[i];
+    quiz(currentQuestion.question, currentQuestion.answer)
+  }
+}
+game();
+
+
+// score
+function showScores() {
+  console.log("YAY!! Your Final Score is ", score);
+}
+showScores();
